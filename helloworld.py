@@ -1,18 +1,18 @@
 def get_user_input():
     while True:
         try:
-            user_input = input("Please enter some data: ")
-            # Check if the input is not empty
-            if user_input.strip():
-                return user_input
-            else:
-                print("Input cannot be empty. Please try again.")
+            user_input = input("Please enter some data: ").strip()  # Remove leading/trailing whitespace
+            if not user_input:
+                raise ValueError("Input cannot be empty. Please try again.")
+            return user_input
         except KeyboardInterrupt:
             # Handle Ctrl+C to gracefully exit the program
             print("\nProgram terminated.")
             exit()
+        except ValueError as ve:
+            print(ve)  # Print specific error message
         except Exception as e:
-            print("An error occurred:", e)
+            print("An unexpected error occurred:", e)
 
 
 def main():
